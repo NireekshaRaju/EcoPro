@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers Form</title>
+    <link rel="stylesheet" href="{% static 'css/sell.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <img src="{% static 'images/logoo.png' %}" alt="Logo">
+            <h1>EcoPro</h1>
+        </div>
+        <div class="navbar-content">
+            <ul><a onclick="home()">Home</a></ul>
+            <ul><a onclick="prod()">Products</a></ul>
+            <ul><a onclick="sell()">Sell Now</a></ul>
+            <ul><a onclick="cart()"><i class="fa-solid fa-cart-shopping"></i> </a></ul>
+            <ul><a onclick="log()"><i class="fa-solid fa-user-plus"></i> </a></ul>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="form-section">
+            <div id="form-container">
+                <!-- Signup Form -->
+                <!-- <form id="signup-form"> -->
+                <div id="signup-form">
+                    <h2>Create a seller account</h2>
+                    <label for="name">Name:</label>
+                    <input type="text" id="sellname" name="name" required="">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="sellemail" name="email" required="">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="sellpassword" name="password">
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="sellphoneno" name="phone" required=""><br>
+
+                    <button type="submit" onclick="addseller()">Create</button>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Log In</a></p>
+                </div>
+                <div id="login-form" style="display: none;">
+                    <h2>Log In</h2>
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="login-email" required>
+
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" required><br>
+
+                    <button type="button" onclick="login()">Log In</button>
+                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+        <script>
+            function prod() {
+                window.location.href = '/products'
+            }
+            function home() {
+                window.location.href = '/landing'
+            }
+
+            function sell() {
+                window.location.href = "/sell";
+            }
+            function cart() {
+                window.location.href = '/cartnew';
+            }
+            function log() {
+                window.location.href = "/signup";
+            }
+
+            function addseller() {
+                var name = $('#sellname').val();
+                var email = $('#sellemail').val();
+                var password = $('#sellpassword').val();
+                var phoneno = $('#sellphoneno').val();
+                console.log(name);
+                console.log(email);
+                console.log(password);
+                console.log(phoneno);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/create_sell/",
+                    data: {
+                        sname: name,
+                        semail: email,
+                        spassword: password,
+                        sphoneno: phoneno
+                    },
+
+                    success: function (data) {
+                        if (data) {
+                            //alert('success')
+                            console.log(data);
+                            //window.location.href="/addproducts";
+                        }
+                        
+                    }
+
+
+                })
+            }
+
+            function showSignup() {
+                document.getElementById('signup-form').style.display = 'block';
+                document.getElementById('login-form').style.display = 'none';
+            }
+
+            function showLogin() {
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('login-form').style.display = 'block';
+            }
+
+            function login() {
+                var email = $('#login-email').val();
+                var password = $('#login-password').val();
+
+                window.location.href='/addproducts'
+                // Simulate a login process; replace with actual backend validation
+                function showSignup() {
+                    document.getElementById('signup-form').style.display = 'block';
+                    document.getElementById('login-form').style.display = 'none';
+                }
+        
+                function showLogin() {
+                    document.getElementById('signup-form').style.display = 'none';
+                    document.getElementById('login-form').style.display = 'block';
+                }
+        
+                function login() {
+                    var email = $('#login-email').val();
+                    var password = $('#login-password').val();
+        
+                    
+                    // Simulate a login process; replace with actual backend validation
+                    if (email === 'niree@gmail.com' && password === '12345678') {
+                        window.location.href = '/dashboard';
+                    } else {
+                        alert('Invalid email or password. Please try again.');
+                    }
+        
+                }
+        
+                // Initialize with signup form visible
+                showSignup();
+
+            }
+
+            // Initialize with signup form visible
+            showSignup();
+
+        </script>
+</body>
+
+</html>

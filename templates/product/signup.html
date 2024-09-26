@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Signup Form</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <img style="height: 50px;" src="{% static 'images/logoo.png' %}" alt="Logo">
+            <h1>EcoPro</h1>
+        </div>
+        <div class="navbar-content">
+            <ul><a onclick="home()">Home</a></ul>
+            <ul><a onclick="prod()">Products</a></ul>
+            <!-- <ul><a onclick="sell()">Sell Now</a></ul> -->
+            <ul><a onclick="cart()"><i class="fa-solid fa-cart-shopping"></i> </a></ul>
+            <ul><a onclick="log()"><i class="fa-solid fa-user-plus"></i> </a></ul>
+            
+        </div>
+    </div>
+
+
+    <div class="container">
+       
+        <div class="image-section">
+            <!-- <img style="height: 230px;" src="{% static 'images/mikkyyy.png' %}" alt="Logo"> -->
+            <!-- <h1>EcoPro</h1> -->
+            <!-- <img src="{% static ' /images/nirrrrrrrrrrrrr.jpg ' %}" alt=""> -->
+        </div>
+        
+        <div class="form-section">
+            <div class="form-image">
+                <img style="height: 300px;" src="{% static 'images/mikkyyy.png' %}" alt="Logo">
+            </div>
+            <div id="form-container">
+                <!-- Signup Form -->
+                <div id="signup-form">
+                    <h2>Sign Up</h2>
+                    <label for="name">Name:</label>
+                    <input type="text" id="user_name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phoneno" name="phoneno" required><br>
+
+                    <label for="phone"> Select the role:</label>
+                    <select name="Role" id="role">
+                        <option value="customer">Customer</option>
+                        <!-- <option value="suppliers">Suppliers</option> -->
+                        <option value="admin">Admin</option>
+                    </select><br>
+
+                    
+                    <button type="button" onclick="check()">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Log In</a></p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" style="display: none;">
+                    <h2>Log In</h2>
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login_email" name="login-email" required>
+                    
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login_password" name="login-password" required><br>
+                    
+                    <button type="button" onclick="login()">Log In</button>
+                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function prod(){
+            window.location.href = '/products';
+        }
+        
+        function home(){
+            window.location.href = '/landing';
+        }
+        
+        function cart(){
+            window.location.href = "/cartnew";
+        }
+        function   log(){
+            window.location.href = "/signup";
+         }
+         function   sell(){
+            window.location.href = "/sell";
+         }
+
+        function check(){
+            var user_name = $('#user_name').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var phoneno = $('#phoneno').val();
+            var role = $('#role').val();
+            
+            console.log(user_name);
+            console.log(email);
+            console.log(password);
+            console.log(phoneno);
+            console.log(role);
+
+            $.ajax({
+                type: "POST",
+                url: "/create_staff/",
+                data: {
+                    "user_name": user_name,
+                    "email": email,
+                    "password": password,
+                    "phoneno": phoneno,
+                    "role": role,
+                },
+                success: function(data) {
+                    console.log(data);
+                    window.location.replace("/signup");
+                }
+            });
+        }
+
+        function showSignup() {
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        function login() {
+            var email = $('#login_email').val();
+            var password = $('#login_password').val();
+
+            console.log(email);
+
+            $.ajax({
+                type: "POST",
+                url: "/login_check/",
+                data: {
+                    
+                    "email": email,
+                    "password": password,
+                    
+                },
+                success: function(data) {
+                    if(data["status"] == "pass" )
+                    {
+                        var userr = "welcome " + data["users"];
+                        alert(userr);
+                        if(data["role"] == "admin")
+                        {
+                            window.location.href="/suppliers/selldashboard"
+                        }
+                        else if(data["role"] == "customer")
+                        {
+                            window.location.href="/landing"
+                        }
+                        
+                        
+
+                    }
+                    else{
+                        alert("login failed");
+                    }
+                }
+            });
+        
+
+           
+
+        }
+
+        // Initialize with signup form visible
+        showSignup();
+    </script>
+</body>
+</html>

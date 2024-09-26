@@ -1,0 +1,32 @@
+/* cart.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+#cart-items {
+    margin: 20px;
+}
+
+.cart-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cart-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+#cart-total {
+    margin: 20px;
+    font-size: 1.5em;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}

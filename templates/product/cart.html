@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Cart</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <img src="{% static 'images/logoo.png' %}" alt="Logo">
+            <h1>EcoPro</h1>
+        </div>
+        <div class="navbar-content">
+            <ul><a onclick="home()">Home</a></ul>
+            <ul><a onclick="prod()">Products</a></ul>
+            <!-- <ul><a onclick="sell()">Sell Now</a></ul> -->
+            <ul><a onclick="cart()"><i class="fa-solid fa-cart-shopping"></i> </a></ul>
+            <ul><a onclick="log()"><i class="fa-solid fa-user-plus"></i> </a></ul>
+
+        </div>
+    </div>
+    <div class="form-section">
+        <div id="form-container">
+            <!-- Signup Form -->
+            <!-- <form id="signup-form"> -->
+                <h2>Add your details</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="cname" name="product_name" required="">
+
+                <label for="Price">Email</label>
+                <input type="email" id="cemail" name="price" required="" >
+
+                <label for="quantity">Address:</label>
+                <input type="text" id="caddress" name="quantity" required="" >
+
+                <label for="image">Phone Number:</label>
+                <input type="number" id="cphoneno" name="add_image" required><br>
+
+                <button type="submit" onclick="addcart()">Create</button>
+                <!-- <p>Already have an account? <a href="#" onclick="showLogin()">Log In</a></p> -->
+            <!-- </form> -->
+
+        </div>
+       
+    </div>
+
+            <script>
+                function prod(){
+                    window.location.href='/products'
+                }
+                function home(){
+                    window.location.href='/landing'
+                }
+                function   cart(){
+                    window.location.href = '/cart';
+                 }
+                 function   log(){
+                    window.location.href = "/signup";
+                 }
+                 function   sell(){
+                    window.location.href = "/sell";
+                 }
+
+                function addcart() {
+                    var cname = $('#cname').val();
+                    var cemail = $('#cemail').val();
+                    var caddress = $('#caddress').val();
+                    var cphoneno = $('#cphoneno').val();
+
+                    console.log(cname);
+                    console.log(cemail);
+                    console.log(caddress);
+                   console.log(cphoneno);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/create_cart/",
+                        data: {
+                            "cname": cname,
+                            "cemail": cemail,
+                            "caddress": caddress,
+                            "cphoneno": cphoneno,
+                        },
+                        success: function (data) {
+                            if(data){
+                                alert("added")
+                            }
+                            console.log( data);
+                            //window.location.replace("/view_cart");
+                        }
+                    });
+                }
+            </script>

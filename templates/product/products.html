@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <title>Products</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <img src="{% static 'images/logoo.png' %}" alt="Logo">
+            <h1>EcoPro</h1>
+        </div>
+        <div class="navbar-content">
+            <ul><a onclick="home()">Home</a></ul>
+            <ul><a onclick="prod()">Products</a></ul>
+            <!-- <ul><a onclick="sell()">Sell Now</a></ul> -->
+            <ul><a onclick="cart()"><i class="fa-solid fa-cart-shopping"></i></a></ul>
+            <ul><a onclick="log()"><i class="fa-solid fa-user-plus"></i></a></ul>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Search products...">
+    </div>
+
+    <div class="products">
+        <h2>Our Products</h2>
+        <div class="product-list">
+            <!-- Example of a product item with image and quantity input -->
+            {% for products in productsall %}
+            <div class="product-item" id="{{products.id}}">
+                <img src="{% static 'images/im2.jpg' %}" alt="{{ products.product_name }}">
+                <h3>{{ products.product_name }}</h3>
+                <p>Price: {{ products.price }}</p>
+                <p>Quantity: {{ products.quantity }}</p>
+                <div class="quantity">
+                    <button class="quantity-btn" onclick="changeQuantity(event, -1)">-</button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="quantity-btn" onclick="changeQuantity(event, 1)">+</button>
+                </div>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="con">
+        <h2><i class="fa-solid fa-phone"></i> Call us on: +91 9807654321</h2>
+        <h2><i class="fa-solid fa-envelope"></i> Email us: ecopro@gmail.com</h2>
+        <h2><i class="fa-solid fa-location-dot"></i> Location: Bengaluru, Hyderabad</h2>
+    </div>
+
+    <script>
+        function home() {
+            window.location.href = '/landing';
+        }
+
+        function prod() {
+            window.location.href = '/products';
+        }
+
+        function sell() {
+            window.location.href = '/sell';
+        }
+
+        function log() {
+            window.location.href = '/signup';
+        }
+
+        function cart() {
+            window.location.href = '/cartnew';
+        }
+
+        function changeQuantity(event, amount) {
+            const input = event.target.parentNode.querySelector('.quantity-input');
+            let currentValue = parseInt(input.value);
+            if (currentValue + amount >= 1) {
+                input.value = currentValue + amount;
+            }
+        }
+
+        document.getElementById('search').addEventListener('input', function() {
+            const searchQuery = this.value.toLowerCase();
+            const productItems = document.querySelectorAll('.product-item');
+
+            productItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchQuery)) {
+                    item.style.display = 'block'; // Show item if it matches the search query
+                } else {
+                    item.style.display = 'none'; // Hide item if it does not match
+                }
+            });
+        });
+
+        function addToCart(event) {
+            // Implement your add to cart functionality here
+            alert('Added to cart!');
+        }
+    </script>
+</body>
+
+</html>

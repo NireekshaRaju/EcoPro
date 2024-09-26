@@ -1,0 +1,121 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    
+    
+    
+}
+
+/* Navbar */
+.navbar {
+    background-color: green;
+    color: white;
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-logo h1 {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.navbar-content {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.navbar-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-content a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Ensure the form section covers the full viewport height */
+
+.form-section {
+  
+    margin-top: 0%;
+    /* background-color: white; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    gap: 15%;
+    align-items: center;
+    min-height: 100vh;
+    /* Ensure it covers the viewport height */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the element's total width and height */
+    margin: 0;
+    /* Remove any default margin */
+}
+
+/* Form styling */
+.form-section form {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* White background with slight opacity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.form-section p {
+    text-align: center;
+}
+
+.form-section label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.form-section input {
+    width: 360px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-section button {
+    width: 130px;
+    margin-left: 130px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: green;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}

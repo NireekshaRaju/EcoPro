@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecopro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Removed unnecessary links to HTML files -->
+    <style>
+        /* Add CSS directly here if needed */
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <img src="{% static 'images/logoo.png' %}" alt="Logo">
+            <h1>EcoPro</h1>
+        </div>
+        <div class="navbar-content">
+            <ul><a onclick="home()">Home</a></ul>
+            <ul><a href="#about">About</a></ul>
+            <ul><a onclick="prod()">Products</a></ul>
+            <!-- <ul><a onclick="sell()">Sell Now</a></ul> -->
+            <ul><a onclick="cart()"><i class="fa-solid fa-cart-shopping"></i> </a></ul>
+            <ul><a onclick="log()"><i class="fa-solid fa-user-plus"></i> </a></ul>
+
+            <!-- <ul><a href="admin.html">Admin</a></ul> -->
+        </div>
+    </div>
+
+    <div class="home">
+        <h1>Ecopro</h1>
+        <p>Green Choices for a Brighter Tomorrow.</p>
+    </div>
+
+    <div class="about" id="about">
+        <h1>About Us</h1>
+        <div class="abt">
+            <div class="aa">
+                <h2>Our Mission</h2>
+                <p>At Ecopro, our mission is to lead the way towards a more sustainable future, one thoughtful choice at
+                    a time. Founded with a vision to make eco-friendly living accessible and stylish, we curate a
+                    selection of products that not only meet the highest standards of environmental responsibility but
+                    also inspire our customers to embrace a greener lifestyle. Our commitment to sustainability is
+                    reflected in every aspect of our business—from the ethically sourced materials we use to the
+                    transparent practices we uphold. Join us in our journey to reduce our environmental footprint and
+                    make a positive impact on the world. Together, we can make a difference, one product at a time.</p>
+            </div>
+            <div class="ab">
+                <img src="{% static 'images/side.png' %}" alt="Eco Image">
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-center">Our Products</h1>
+    <div class="productcont">
+        <div class="product" id="products">
+            <div class="prd">
+                <img src="{% static 'images/eco2.webp' %}" alt="Bamboo Soap Shelf">
+                <div class="des">
+                    <h3>Bamboo Soap Shelf</h3>
+                    <!-- <h3>Price: 100</h3> -->
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="prd">
+                <img src="{% static 'images/eco4.jpg' %}" alt="Bamboo Toothbrush">
+                <div class="des">
+                    <h3>Bamboo Toothbrush</h3>
+                    <!-- <h3>Price: 80</h3> -->
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="prd">
+                <img src="{% static 'images/eco3.webp' %}" alt="Pot Scrubber Brush">
+                <div class="des">
+                    <h3>Pot Scrubber Brush</h3>
+                    <!-- <h3>Price: 200</h3> -->
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="prd">
+                <img src="{% static 'images/eco7.webp' %}" alt="Vegetable Scrub Brush">
+                <div class="des">
+                    <h3>Vegetable Scrub Brush</h3>
+                    <!-- <h3>Price: 300</h3> -->
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <button class="button" onclick="products()">View More</button>
+    </div>
+
+    <script>
+        function prod(){
+            window.location.href='/products'
+        }
+        function home(){
+            window.location.href='/landing'
+        }
+        function   cart(){
+            window.location.href = '/cartnew';
+         }
+         function   log(){
+            window.location.href = "/signup";
+         }
+         function   sell(){
+            window.location.href = "/sell";
+         }
+        function products() {
+            window.location.href = "/products";
+        }
+    </script>
+
+    <div class="contact" id="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-form-container">
+            <h2>Contact Us</h2>
+            <form action="#" method="post" class="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+        <div class="con">
+            <h2><i class="fa-solid fa-phone"></i> Call us on: +91 9807654321</h2>
+            <h2><i class="fa-solid fa-envelope"></i> Email us: ecopro@gmail.com</h2>
+            <h2><i class="fa-solid fa-location-dot"></i> Location: Bengaluru, Hyderabad</h2>
+        </div>
+    </div>
+</body>
+
+</html>

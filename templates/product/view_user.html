@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <style>
+        .display-none{
+            display: none;
+        }
+    </style>
+    <body>
+        
+        <table class="table" style="border: 1px solid black;" >
+            <thead>
+                <tr style="background-color: blueviolet; color : white" >
+                    <td>username</td>
+                    <td>email</td>
+                    <td>password</td>
+                    <td>phoneno</td>
+                    <td>role</td>
+                    
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in userdata %}
+                <tr>
+                    <td><input type="text" id="name{{ obj.user_name }}" value="{{ obj.user_name }}"></td>
+                    <td><input type="text" id="email{{ obj.user_name }}" value="{{ obj.email }}"></td>
+                    <td><input type="text" id="password{{ obj.user_name }}" value="{{ obj.password }}"></td>
+                    <td><input type="text" id="phoneno{{ obj.user_name }}" value="{{ obj.phoneno }}"></td>
+                    <td><input type="text" id="role{{ obj.user_name }}" value="{{ obj.role }}"></td>
+                    <td><button onclick="update('{{ obj.user_name }}')">update</button></td>
+                    <td><button onclick="deleterecord('{{ obj.email }}')">delete</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script>
+            function deleterecord(email){
+                console.log(email);
+                $.ajax({
+                    type: "POST",
+                    url : "{% url 'delete_user' %}",
+                    data : {"email": email},
+                    success : function(data)
+                    {
+                        console.log(data);
+                        window.location.replace("/view_user");
+                    }
+                })
+            }
+            function update(email)
+            {
+                var email_check = $('#email' + email).val();
+                var password = $('#password'+email).val();
+                var phoneno = $('#phoneno'+email).val();
+                var role = $('#role'+email).val();
+               
+                $.ajax({
+                    type: "POST",
+                    url: "/update_staff/",
+                    data: {
+                        "user_name": email,
+                        "email": email_check,
+                        "password": password,
+                        "phoneno": phoneno,
+                        "role": role,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        window.location.replace("/view_user");
+                    }
+                });
+
+            }
+        </script>
+    </body>
+</html>

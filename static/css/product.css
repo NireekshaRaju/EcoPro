@@ -1,0 +1,176 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    background-color: green;
+    color: white;
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-logo h1 {
+    margin: 0;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.navbar-content {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.navbar-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-content a {
+    color: white;
+    text-decoration: none;
+}
+
+.search-bar {
+    padding: 20px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 50%;
+    max-width: 400px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.products {
+    padding: 20px;
+}
+
+.products h2 {
+    text-align: center;
+    color: green;
+    font-size: 3rem;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-item h3 {
+    margin: 10px 0;
+    color: black;
+    margin-top: 40px;
+}
+
+.product-item p {
+    margin: 5px 0;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.quantity-btn {
+    background-color: none;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.quantity-btn:hover {
+    background-color: #1a4d1a;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.add-to-cart-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: rgb(100, 168, 45);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.add-to-cart-button:hover {
+    background-color: #1a4d1a;
+}
+
+.footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.con {
+    justify-content: space-evenly;
+    background-color: white;
+    display: flex;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
